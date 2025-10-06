@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: my_project
+Version: 0.1.0
+Summary: A Python project with Pair and Time classes
+Author: Daniel
+License-File: LICENSE
+Requires-Dist: flask>=2.0.0
+Provides-Extra: dev
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Requires-Dist: isort>=5.10.0; extra == "dev"
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pre-commit>=2.0.0; extra == "dev"
+Dynamic: license-file

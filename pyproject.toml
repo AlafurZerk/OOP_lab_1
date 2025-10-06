@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_project"
+version = "0.1.0"
+description = "A Python project with Pair and Time classes"
+authors = [
+    {name = "Daniel"},
+]
+dependencies = [
+    "flask>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "isort>=5.10.0",
+    "pytest>=7.0.0",
+    "pre-commit>=2.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tasks*","tasks/task_2*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py","*_test.py"]
+python_classes = ["Test*", "*Test"]
+python_functions = ["test_*", "*_test"]
+addopts = [
+    "--verbose",
+    "--strict-markers",
+    "--strict-config",
+    "--tb=short",
+    "--color=yes",
+    "--durations=10",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+minversion = "7.0.0"
+
+norecursedirs = [".venv", "build", "dist", "*.egg-info"]
+
+console_output_style = "progress"
+
+show_capture = "no"
