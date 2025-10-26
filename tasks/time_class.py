@@ -51,9 +51,7 @@ class Time:
     def read(self):
         while True:
             try:
-                time_str = input(
-                    "Введите время в формате чч:мм:сс (или с другими разделителями): "
-                )
+                time_str = input("Введите время в формате чч:мм:сс: ")
                 self._init_from_string(time_str)
                 self._normalize()
                 break
@@ -61,7 +59,8 @@ class Time:
                 print(f"Ошибка: {e}. Попробуйте еще раз.")
 
     def display(self):
-        print(f"{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}")
+        time_str = f"{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}"
+        print(time_str)
 
     def to_seconds(self):
         return self.hours * 3600 + self.minutes * 60 + self.seconds
@@ -79,7 +78,7 @@ class Time:
     def subtract_seconds(self, seconds):
         total_seconds = self.to_seconds() - seconds
         if total_seconds < 0:
-            raise ValueError("Результат не может быть отрицательным")
+            raise ValueError("Не может быть < 0")
         return Time(total_seconds)
 
     def __eq__(self, other):

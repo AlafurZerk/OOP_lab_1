@@ -1,4 +1,5 @@
 import pytest
+
 from tasks.pair_class import Pair, make_pair
 
 
@@ -11,7 +12,9 @@ class TestPair:
 
     def test_creation_invalid(self):
         """Тестирование на создание недопустимой пары чисел"""
-        with pytest.raises(ValueError, match="Первое число должно быть меньше второго"):
+        with pytest.raises(
+            ValueError, match="Ошибка: first должен быть меньше second."
+        ):
             Pair(5, 1)
 
     def test_rangecheck_inside(self):

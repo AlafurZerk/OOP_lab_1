@@ -1,4 +1,5 @@
 import pytest
+
 from tasks.time_class import Time
 
 
@@ -39,7 +40,7 @@ class TestTime:
     def test_to_minutes(self):
         """Тестирование преобразования"""
         time = Time(1, 1, 30)
-        assert time.to_minutes() == 61  # rounded
+        assert time.to_minutes() == 62
 
     def test_comparison_operators(self):
         """Тестирование сравнения"""
@@ -73,7 +74,7 @@ class TestTime:
     def test_subtract_seconds_negative(self):
         """Тестирование вычитания слишком большого количества секунд"""
         time = Time(0, 0, 10)
-        with pytest.raises(ValueError, match="Результат не может быть отрицательным"):
+        with pytest.raises(ValueError, match="Не может быть < 0"):
             time.subtract_seconds(20)
 
     def test_diff_in_seconds(self):

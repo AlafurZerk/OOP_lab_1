@@ -1,19 +1,20 @@
-
 class River:
     all_rivers = []
-    def _init__(self, name, length) :
+
+    def _init__(self, name, length):
         self.name = name
         self.length = length
         # добавляем текущую реку в список всех рек
         River.all_rivers.append(self)
-volga = River("волга"
-, 3530)
-seine = River("Сена"
-, 776)
+
+
+volga = River("волга", 3530)
+seine = River("Сена", 776)
 nile = River("нил", 6852)
 # далее печатаем все названия рек
 for river in River.all_rivers:
     print(river.name)
+
 
 class River:
     # список всех рек
@@ -24,6 +25,7 @@ class River:
         self.length = length
         # добавляем текущую реку в список всех рек
         River.all_rivers.append(self)
+
 
 volga = River("Волга", 3530)
 seine = River("Сена", 776)
@@ -37,6 +39,7 @@ for river in River.all_rivers:
 # Сена
 # Нил
 
+
 # Класс River с методом get_info
 class River:
     all_rivers = []
@@ -49,6 +52,7 @@ class River:
     def get_info(self):
         print("Длина {0} равна {1} км".format(self.name, self.length))
 
+
 volga = River("Волга", 3530)
 seine = River("Сена", 776)
 nile = River("Нил", 6852)
@@ -59,6 +63,7 @@ seine.get_info()
 # Длина Сены равна 776 km
 nile.get_info()
 # Длина Нила равна 6852 km
+
 
 # Класс Pet с атрибутами класса и экземпляра
 class Pet:
@@ -71,6 +76,7 @@ class Pet:
         self.name = name
         self.legs = 4
 
+
 # Создание экземпляров
 tom = Pet("cat", "Tom")
 avocado = Pet("dog", "Avocado")
@@ -80,28 +86,28 @@ ben = Pet("goldfish", "Benjamin")
 # Изменение через класс
 Pet.n_pets += 3
 
-print(Pet.n_pets)    # 3
-print(tom.n_pets)    # 3
-print(avocado.n_pets)   # 3
-print(ben.n_pets)    # 3
+print(Pet.n_pets)  # 3
+print(tom.n_pets)  # 3
+print(avocado.n_pets)  # 3
+print(ben.n_pets)  # 3
 
 # Изменение через экземпляры (создает атрибуты экземпляра)
 tom.n_pets += 1
 avocado.n_pets += 1
 ben.n_pets += 1
 
-print(Pet.n_pets)    # 3
-print(tom.n_pets)    # 4
-print(avocado.n_pets)    # 4
-print(ben.n_pets)    # 4
+print(Pet.n_pets)  # 3
+print(tom.n_pets)  # 4
+print(avocado.n_pets)  # 4
+print(ben.n_pets)  # 4
 
 # Работа с атрибутом класса kind
 ben.kind = "fish"
 
-print(Pet.kind)    # "mammal"
-print(tom.kind)    # "mammal"
-print(avocado.kind)    # "mammal"
-print(ben.kind)    # "fish"
+print(Pet.kind)  # "mammal"
+print(tom.kind)  # "mammal"
+print(avocado.kind)  # "mammal"
+print(ben.kind)  # "fish"
 
 # Работа с изменяемым атрибутом класса pet_names
 Pet.pet_names.append(tom.name)
@@ -123,6 +129,7 @@ print(tom.pet_names)  # ["Tom"]
 print(avocado.pet_names)  # ["Avocado"]
 print(ben.pet_names)  # ["Benjamin"]
 
+
 # Класс Ship с методом и отдельная функция
 class Ship:
     def init(self, name, capacity):
@@ -130,13 +137,13 @@ class Ship:
         self.capacity = capacity
         self.cargo = 0
 
-
     def sail(self):
         print("{} has sailed!".format(self.name))
 
 
 def sail_function(name):
     print("{} has sailed!".format(name))
+
 
 # Создание экземпляра и вызов метода
 black_pearl = Ship("Black Pearl", 100)
@@ -172,6 +179,7 @@ class Rectangle:
 rect = Rectangle(10, 20)
 print(rect.get_width())  # 10
 print(rect._width)  # 10 (можно обратиться напрямую)
+
 
 class Rectangle:
     def init(self, width, height):
@@ -236,6 +244,7 @@ black_pearl.unload_cargo(400)  # "Unloaded 400 tons"
 black_pearl.load_cargo(700)  # "Cannot load that much"
 black_pearl.unload_cargo(300)  # "Cannot unload that much"
 
+
 class Rational:
     def init(self, a=0, b=1):
         a = int(a)
@@ -276,7 +285,7 @@ class Rational:
     # Прочитать значение дроби с клавиатуры
     def read(self, prompt=None):
         line = input() if prompt is None else input(prompt)
-        parts = list(map(int, line.split('/', maxsplit=1)))
+        parts = list(map(int, line.split("/", maxsplit=1)))
 
         if parts[1] == 0:
             raise ValueError("Denominator cannot be zero")
@@ -292,8 +301,7 @@ class Rational:
     # Сложение обыкновенных дробей
     def add(self, rhs):
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator + \
-                self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator + self.denominator * rhs.numerator
             b = self.denominator * rhs.denominator
             return Rational(a, b)
         else:
@@ -302,8 +310,7 @@ class Rational:
     # Вычитание обыкновенных дробей
     def sub(self, rhs):
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator - \
-                self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator - self.denominator * rhs.numerator
             b = self.denominator * rhs.denominator
             return Rational(a, b)
         else:
@@ -330,8 +337,9 @@ class Rational:
     # Проверка на равенство дробей
     def equals(self, rhs):
         if isinstance(rhs, Rational):
-            return (self.numerator == rhs.numerator) and \
-                (self.denominator == rhs.denominator)
+            return (self.numerator == rhs.numerator) and (
+                self.denominator == rhs.denominator
+            )
         else:
             return False
 
@@ -354,7 +362,7 @@ class Rational:
             return False
 
 
-if __name == 'main':
+if __name == "main":
     r1 = Rational(3, 4)
     r1.display()  # 3/4
 
