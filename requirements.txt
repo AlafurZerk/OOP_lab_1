@@ -1,0 +1,4 @@
+# Production dependencies
+
+
+# Development dependencies (добавятся через pyproject.toml)
