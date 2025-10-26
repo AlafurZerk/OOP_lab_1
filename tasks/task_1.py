@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from pair_class import Pair, make_pair
+from tasks.pair_class import Pair, make_pair
 
 if __name__ == "__main__":
     print("=== Демонстрация класса Pair ===")

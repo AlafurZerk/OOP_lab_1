@@ -1,5 +1,9 @@
 class Time:
-    def __init__(self, *args):
+    def __init__(self, *args) -> None:
+        self.hours: int = 0
+        self.minutes: int = 0
+        self.seconds: int = 0
+
         if len(args) == 1:
             if isinstance(args[0], str):
                 self._init_from_string(args[0])
@@ -12,18 +16,19 @@ class Time:
             else:
                 raise ValueError("Invalid initialization argument")
         elif len(args) == 3:
-            self._init_from_parts(args)
+            hour, minute, second = args
+            self._init_from_parts((hour, minute, second))
         else:
             raise ValueError("Invalid number of arguments")
 
         self._normalize()
 
-    def _init_from_string(self, time_str):
+    def _init_from_string(self, time_str: str) -> None:
         for separator in [":", " ", "-", ".", ","]:
             if separator in time_str:
                 parts = list(map(int, time_str.split(separator)))
                 if len(parts) == 3:
-                    self._init_from_parts(parts)
+                    self._init_from_parts((parts[0], parts[1], parts[2]))
                     return
 
         try:
@@ -32,23 +37,23 @@ class Time:
         except ValueError:
             raise ValueError("Неправильный формат времени")
 
-    def _init_from_parts(self, parts):
+    def _init_from_parts(self, parts: tuple[int, int, int]) -> None:
         self.hours, self.minutes, self.seconds = parts
         if not (0 <= self.minutes < 60 and 0 <= self.seconds < 60):
             raise ValueError("Минуты и секунды должны быть между 0 и 59")
 
-    def _init_from_seconds(self, total_seconds):
+    def _init_from_seconds(self, total_seconds: int) -> None:
         self.hours = total_seconds // 3600
         self.minutes = (total_seconds % 3600) // 60
         self.seconds = total_seconds % 60
 
-    def _normalize(self):
+    def _normalize(self) -> None:
         total_seconds = self.to_seconds()
         self.hours = total_seconds // 3600
         self.minutes = (total_seconds % 3600) // 60
         self.seconds = total_seconds % 60
 
-    def read(self):
+    def read(self) -> None:
         while True:
             try:
                 time_str = input("Введите время в формате чч:мм:сс: ")
@@ -58,43 +63,46 @@ class Time:
             except ValueError as e:
                 print(f"Ошибка: {e}. Попробуйте еще раз.")
 
-    def display(self):
-        time_str = f"{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}"
-        print(time_str)
+    def display(self) -> None:
+        print(f"{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}")
 
-    def to_seconds(self):
+    def to_seconds(self) -> int:
         return self.hours * 3600 + self.minutes * 60 + self.seconds
 
-    def to_minutes(self):
+    def to_minutes(self) -> int:
         return round(self.to_seconds() / 60)
 
-    def diff_in_seconds(self, other):
+    def diff_in_seconds(self, other: "Time") -> int:
         return abs(self.to_seconds() - other.to_seconds())
 
-    def add_seconds(self, seconds):
+    def add_seconds(self, seconds: int) -> "Time":
         total_seconds = self.to_seconds() + seconds
         return Time(total_seconds)
 
-    def subtract_seconds(self, seconds):
+    def subtract_seconds(self, seconds: int) -> "Time":
         total_seconds = self.to_seconds() - seconds
         if total_seconds < 0:
             raise ValueError("Не может быть < 0")
         return Time(total_seconds)
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Time):
+            return NotImplemented
         return self.to_seconds() == other.to_seconds()
 
-    def __lt__(self, other):
+    def __lt__(self, other: "Time") -> bool:
         return self.to_seconds() < other.to_seconds()
 
-    def __le__(self, other):
+    def __le__(self, other: "Time") -> bool:
         return self.to_seconds() <= other.to_seconds()
 
-    def __gt__(self, other):
+    def __gt__(self, other: "Time") -> bool:
         return self.to_seconds() > other.to_seconds()
 
-    def __ge__(self, other):
+    def __ge__(self, other: "Time") -> bool:
         return self.to_seconds() >= other.to_seconds()
 
-    def __ne__(self, other):
+    def __ne__(self, other: object) -> bool:
+        if not isinstance(other, Time):
+            return NotImplemented
         return self.to_seconds() != other.to_seconds()
