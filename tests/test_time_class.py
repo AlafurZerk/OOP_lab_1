@@ -1,5 +1,5 @@
 import pytest
-from tasks.time_class import Time
+from tasks.taks_2.time_class import Time
 
 
 class TestTime:

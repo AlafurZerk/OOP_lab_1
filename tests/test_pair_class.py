@@ -11,10 +11,9 @@ class TestPair:
 
     def test_creation_invalid(self) -> None:
         """Тестирование на создание недопустимой пары чисел"""
-        with pytest.raises(
-            ValueError, match="Ошибка: first должен быть меньше second."
-        ):
-            Pair(5, 1)
+        pair = Pair(5, 1)
+        assert pair.first == 5
+        assert pair.second == 1
 
     def test_rangecheck_inside(self) -> None:
         """Тестирование диапазона с числом внутри диапазона"""
@@ -43,6 +42,12 @@ class TestPair:
         assert isinstance(pair, Pair)
         assert pair.first == 2
         assert pair.second == 4
+
+    def test_make_pair_invalid(self) -> None:
+        pair = make_pair(4, 2)
+        assert isinstance(pair, Pair)
+        assert pair.first == 4
+        assert pair.second == 2
 
     def test_display_method(self, capsys: pytest.CaptureFixture) -> None:
         """Тест вывода"""

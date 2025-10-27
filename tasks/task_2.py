@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-
 from tasks.time_class import Time
 
-if __name__ == "__main__":
+
+def main() -> None:
     print("=== Демонстрация класса Time ===")
 
     print("Создание времени разными способами:")
@@ -47,3 +47,7 @@ if __name__ == "__main__":
     t7.read()
     print("Вы ввели:", end=" ")
     t7.display()
+
+
+if __name__ == "__main__":
+    main()

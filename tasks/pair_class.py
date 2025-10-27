@@ -1,12 +1,7 @@
 class Pair:
-    first: int
-    second: int
-
     def __init__(self, first: int, second: int) -> None:
-        if first >= second:
-            raise ValueError("Ошибка: first должен быть меньше second.")
-        self.first = first
-        self.second = second
+        self.first: int = first
+        self.second: int = second
 
     def read(self) -> None:
         self.first = int(input("Введите начало интервала (first): "))
@@ -22,8 +17,4 @@ class Pair:
 
 
 def make_pair(first: int, second: int) -> Pair:
-    try:
-        return Pair(first, second)
-    except ValueError as e:
-        print(e)
-        exit(1)
+    return Pair(first, second)
